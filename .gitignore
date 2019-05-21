@@ -1,3 +1,5 @@
+.gitignore
 parsenv/
 parsv2.py
 text.txt
+agent

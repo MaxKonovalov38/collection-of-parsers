@@ -4,10 +4,10 @@ from bs4 import BeautifulSoup as bs
 
 # Эмулируем поведение браузера
 headers = {'accept': '*/*',
-    'user-agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:66.0) Gecko/20100101 Firefox/66.0'}
+    'user-agent': 'USER-AGENT'}
 
 # Адресс сайта
-base_url = 'https://irkutsk.hh.ru/search/vacancy?area=35&clusters=true&enable_snippets=true&specialization=10.470'
+base_url = 'URL-HH.ru'
 
 # Файл в которвый будем сбрасывать данные
 out = 'text.txt'
@@ -37,14 +37,10 @@ def hh_parse(base_url, headers):
             #
             content = 'Условия:\n' + text1 + '\nТребования к кандидату:\n' + text2
             #
-            jobs = 'Вакансия: ' + title + '\n' + 'Ссылка: ' + href + '\n' + 'Название компании: ' + company + '\n' + content + '\n\n\n\n\n'
+            jobs = 'Вакансия: ' + title + '\n' + 'Ссылка: ' + href + '\n' + 'Название компании: ' + company + '\n' + content + '\n\n\n'
             output_file.write(jobs)
         output_file.close()
     else:
         print('Error!')
 
 hh_parse(base_url, headers)
-
-# Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:66.0) Gecko/20100101 Firefox/66.0
-# https://irkutsk.hh.ru/search/vacancy?area=35&clusters=true&enable_snippets=true&specialization=10.470&industry=47&from=cluster_industry
-# https://irkutsk.hh.ru/search/vacancy?area=35&clusters=true&enable_snippets=true&specialization=10.470
