@@ -7,14 +7,13 @@ headers = {'accept': '*/*',
     'user-agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:66.0) Gecko/20100101 Firefox/66.0'}
 
 # Адресс сайта
-base_url = 'https://irkutsk.hh.ru/search/vacancy?area=35&clusters=true&enable_snippets=true&specialization=10.470&industry=47&from=cluster_industry'
+base_url = 'https://irkutsk.hh.ru/search/vacancy?area=35&clusters=true&enable_snippets=true&specialization=10.470'
 
 # Файл в которвый будем сбрасывать данные
 out = 'text.txt'
 
 # Функция парсера
 def hh_parse(base_url, headers):
-    jobs = []
     # Эмулируем пользователя
     session = requests.Session()
     request = session.get(base_url, headers=headers)
@@ -38,14 +37,8 @@ def hh_parse(base_url, headers):
             #
             content = 'Условия:\n' + text1 + '\nТребования к кандидату:\n' + text2
             #
-            jobs.append({
-                'title': title,
-                'href': href,
-                'company': company,
-                'content': content
-                })
-            output_file.write(content)
-        print(jobs)
+            jobs = 'Вакансия: ' + title + '\n' + 'Ссылка: ' + href + '\n' + 'Название компании: ' + company + '\n' + content + '\n\n\n\n\n'
+            output_file.write(jobs)
         output_file.close()
     else:
         print('Error!')
@@ -54,5 +47,4 @@ hh_parse(base_url, headers)
 
 # Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:66.0) Gecko/20100101 Firefox/66.0
 # https://irkutsk.hh.ru/search/vacancy?area=35&clusters=true&enable_snippets=true&specialization=10.470&industry=47&from=cluster_industry
-
 # https://irkutsk.hh.ru/search/vacancy?area=35&clusters=true&enable_snippets=true&specialization=10.470
